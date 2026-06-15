@@ -28,13 +28,21 @@ export const SERVICES_DATA = [
     shortDesc:
       "Custom web and mobile applications, ERP systems, and SaaS products built for scale and performance.",
     fullDesc:
-      "From simple business tools to complex enterprise platforms, we build software that solves real problems.",
+      "From simple business tools to complex enterprise platforms, we build software that solves real problems. We specialise in local API integrations including M-Pesa, KRA eTIMS, SHA, and more — so your software is ready for the Kenyan market from day one.",
     features: [
       "Web Applications",
       "Mobile Apps (iOS & Android)",
       "ERP & CRM Systems",
       "SaaS Products",
       "API Development & Integration",
+    ],
+    integrations: [
+      "Lipa Na Mpesa",
+      "KRA eTIMS",
+      "Bulk SMS",
+      "Bulk WhatsApp",
+      "SEO Dashboards",
+      "SHA Integration",
     ],
     pricing: "From KES 150,000/project",
     tag: null,
@@ -147,24 +155,24 @@ export default function ServicesGrid({ preview = false }) {
   const services = preview ? SERVICES_DATA.slice(0, 3) : SERVICES_DATA;
 
   return (
-    <SectionWrapper className="bg-gray-50" id="services">
+    <SectionWrapper className="bg-[#0a0f1a]" id="services">
       <div className="text-center mb-14">
         <Animate variant="fade-up">
           <p className="section-tag flex justify-center">What we do</p>
           <h2 className="section-title">Full-spectrum IT services</h2>
-          <p className="text-gray-500 text-base leading-relaxed max-w-xl mx-auto">
+          <p className="text-white/50 text-base leading-relaxed max-w-xl mx-auto">
             From day-to-day IT support to enterprise software — Altomik handles
             every layer of your technology stack.
           </p>
         </Animate>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map((service, i) => (
           <Animate key={service.id} variant="fade-up" delay={i * 80}>
             <Link
               to={`/services/${service.id}`}
-              className="group bg-white rounded-xl border border-gray-100 p-7 hover:bg-navy transition-all duration-300 hover:border-navy hover:shadow-xl relative overflow-hidden block h-full"
+              className="group bg-navy-700 rounded-xl border border-white/8 p-7 hover:border-gold-500/40 hover:bg-navy-600 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 relative overflow-hidden block h-full"
             >
               {service.tag && (
                 <div className="absolute top-4 right-4">
@@ -173,16 +181,16 @@ export default function ServicesGrid({ preview = false }) {
                   </span>
                 </div>
               )}
-              <div className="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-500 mb-5 group-hover:bg-gold-500/15 group-hover:border-gold-500/30 transition-all">
+              <div className="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-500 mb-5 group-hover:bg-gold-500/20 group-hover:border-gold-500/40 transition-all">
                 <ServiceIcon type={service.id} className="w-5 h-5" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-navy group-hover:text-white transition-colors mb-3">
+              <h3 className="font-heading font-bold text-lg text-white group-hover:text-gold-400 transition-colors mb-3">
                 {service.title}
               </h3>
-              <p className="text-gray-500 text-sm leading-relaxed group-hover:text-white/60 transition-colors mb-5">
+              <p className="text-white/45 text-sm leading-relaxed group-hover:text-white/60 transition-colors mb-5">
                 {service.shortDesc}
               </p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pt-4 border-t border-white/6">
                 <div className="text-gold-500 font-heading font-bold text-xs tracking-wider uppercase">
                   {service.pricing}
                 </div>
@@ -196,26 +204,11 @@ export default function ServicesGrid({ preview = false }) {
 
         {preview && (
           <Animate variant="fade-up" delay={4 * 80}>
-            <div className="col-span-full bg-gold-50 border border-gold-500/20 rounded-xl p-7 flex flex-col justify-center items-center text-center">
-              <p className="font-heading font-bold text-navy text-base mb-2">
+            <div className="col-span-full bg-gold-500/5 border border-gold-500/20 rounded-xl p-7 flex flex-col justify-center items-center text-center">
+              <p className="font-heading font-bold text-white text-base mb-2">
                 Not sure where to start?
               </p>
-
-              <p className="text-gray-500 text-sm leading-relaxed mb-5 max-w-2xl">
-                Let's talk through your technology needs. First consultation is
-                free.
+              <p className="text-white/50 text-sm leading-relaxed mb-5 max-w-2xl">
+                Let's talk through your technology needs. First consultation is free.
               </p>
-
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-gold-500 font-heading font-bold text-sm hover:gap-3 transition-all"
-              >
-                View all services <ArrowRight size={15} />
-              </Link>
-            </div>
-          </Animate>
-        )}
-      </div>
-    </SectionWrapper>
-  );
-}
+       

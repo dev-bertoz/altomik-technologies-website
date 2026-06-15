@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { ArrowLeft, Linkedin, Twitter, Mail, GraduationCap, Briefcase, ArrowRight } from 'lucide-react'
+import { ArrowLeft, Linkedin, Twitter, Github, Mail, GraduationCap, Briefcase, ArrowRight } from 'lucide-react'
 import { TEAM_DATA } from '@/components/sections/Team'
 import CTABanner from '@/components/sections/CTABanner'
 
@@ -33,16 +33,19 @@ export default function TeamProfile() {
             {/* Avatar */}
             <div className={`w-36 h-36 md:w-44 md:h-44 rounded-2xl bg-gradient-to-br ${member.color} border border-gold-500/25 flex items-center justify-center flex-shrink-0 relative overflow-hidden`}>
               <div
-                className="absolute inset-0 opacity-10"
+                className="absolute inset-0 opacity-[0.08]"
                 style={{
                   backgroundImage: 'linear-gradient(rgba(245,158,11,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.8) 1px, transparent 1px)',
                   backgroundSize: '20px 20px',
                 }}
               />
-              <span className="font-heading font-extrabold text-5xl text-white relative z-10">
-                {member.initials}
-              </span>
-              {/* Replace with: <img src={member.photo} alt={member.name} className="w-full h-full object-cover" /> */}
+              {member.photo ? (
+                <img src={member.photo} alt={member.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+              ) : (
+                <span className="font-heading font-extrabold text-5xl text-white relative z-10">
+                  {member.initials}
+                </span>
+              )}
             </div>
 
             {/* Info */}
@@ -76,6 +79,12 @@ export default function TeamProfile() {
                     <Twitter size={14} /> Twitter
                   </a>
                 )}
+                {member.social.github && (
+                  <a href={member.social.github} target="_blank" rel="noreferrer"
+                    className="flex items-center gap-2 border border-white/20 text-white/60 hover:border-gold-500 hover:text-gold-500 transition-all px-3 py-1.5 rounded-lg text-sm font-heading font-medium">
+                    <Github size={14} /> GitHub
+                  </a>
+                )}
                 {member.social.email && (
                   <a href={`mailto:${member.social.email}`}
                     className="flex items-center gap-2 border border-white/20 text-white/60 hover:border-gold-500 hover:text-gold-500 transition-all px-3 py-1.5 rounded-lg text-sm font-heading font-medium">
@@ -89,18 +98,18 @@ export default function TeamProfile() {
       </section>
 
       {/* Main content */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0f1a]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
             {/* Bio */}
             <div className="lg:col-span-2">
-              <h2 className="font-heading font-bold text-navy text-xl mb-5 pb-3 border-b border-gray-100">
+              <h2 className="font-heading font-bold text-white text-xl mb-5 pb-3 border-b border-white/10">
                 About {member.name.split(' ')[0]}
               </h2>
               <div className="space-y-4">
                 {member.fullBio.split('\n\n').filter(Boolean).map((para, i) => (
-                  <p key={i} className="text-gray-600 leading-relaxed">
+                  <p key={i} className="text-white/55 leading-relaxed">
                     {para.trim()}
                   </p>
                 ))}
@@ -111,14 +120,14 @@ export default function TeamProfile() {
             <div className="space-y-7">
 
               {/* Expertise */}
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+              <div className="bg-navy-700 rounded-2xl p-6 border border-white/8">
                 <div className="flex items-center gap-2 mb-4">
                   <Briefcase size={15} className="text-gold-500" />
-                  <h3 className="font-heading font-bold text-navy text-sm tracking-wide uppercase">Areas of Expertise</h3>
+                  <h3 className="font-heading font-bold text-white text-sm tracking-wide uppercase">Areas of Expertise</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {member.expertise.map((e) => (
-                    <span key={e} className="bg-white border border-gray-200 text-gray-600 text-xs px-3 py-1.5 rounded-full font-body">
+                    <span key={e} className="bg-white/6 border border-white/10 text-white/55 text-xs px-3 py-1.5 rounded-full font-body">
                       {e}
                     </span>
                   ))}
@@ -126,28 +135,28 @@ export default function TeamProfile() {
               </div>
 
               {/* Education */}
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+              <div className="bg-navy-700 rounded-2xl p-6 border border-white/8">
                 <div className="flex items-center gap-2 mb-4">
                   <GraduationCap size={15} className="text-gold-500" />
-                  <h3 className="font-heading font-bold text-navy text-sm tracking-wide uppercase">Education & Certifications</h3>
+                  <h3 className="font-heading font-bold text-white text-sm tracking-wide uppercase">Education & Certifications</h3>
                 </div>
                 <div className="space-y-4">
                   {member.education.map((e, i) => (
                     <div key={i} className="border-l-2 border-gold-500/40 pl-3">
-                      <p className="font-heading font-bold text-navy text-sm">{e.degree}</p>
-                      <p className="text-gray-400 text-xs mt-0.5">{e.school}</p>
+                      <p className="font-heading font-bold text-white text-sm">{e.degree}</p>
+                      <p className="text-white/35 text-xs mt-0.5">{e.school}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Contact CTA */}
-              <div className="bg-navy rounded-2xl p-6 border border-gold-500/15">
+              <div className="bg-navy-700 rounded-2xl p-6 border border-gold-500/20">
                 <h3 className="font-heading font-bold text-white text-sm mb-2">Work with {member.name.split(' ')[0]}</h3>
-                <p className="text-white/50 text-xs leading-relaxed mb-4">
+                <p className="text-white/45 text-xs leading-relaxed mb-4">
                   Interested in working with our team? Let's start a conversation.
                 </p>
-                <Link to="/contact" className="btn-primary text-xs w-full justify-center">
+                <Link to="/contact" className="btn-primary text-xs w-full justify-center inline-flex items-center gap-2">
                   Get in touch <ArrowRight size={13} />
                 </Link>
               </div>
@@ -157,9 +166,9 @@ export default function TeamProfile() {
       </section>
 
       {/* Other team members */}
-      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-navy">
         <div className="max-w-7xl mx-auto">
-          <h3 className="font-heading font-bold text-navy text-lg mb-7">
+          <h3 className="font-heading font-bold text-white text-lg mb-7">
             Meet the rest of the team
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -167,23 +176,7 @@ export default function TeamProfile() {
               <Link
                 key={m.id}
                 to={`/team/${m.slug}`}
-                className="group flex items-center gap-4 bg-white border border-gray-100 rounded-xl p-4 hover:border-gold-500/30 hover:shadow-md transition-all duration-200"
+                className="group flex items-center gap-4 bg-navy-700 border border-white/8 rounded-xl p-4 hover:border-gold-500/30 hover:bg-navy-600 transition-all duration-200"
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center flex-shrink-0`}>
-                  <span className="font-heading font-extrabold text-white text-sm">{m.initials}</span>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-heading font-bold text-navy text-sm group-hover:text-gold-600 transition-colors truncate">{m.name}</p>
-                  <p className="text-gray-400 text-xs truncate">{m.role}</p>
-                </div>
-                <ArrowRight size={14} className="text-gray-300 group-hover:text-gold-500 transition-colors flex-shrink-0" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABanner />
-    </>
-  )
-}
+                  <span classN

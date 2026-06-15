@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply font-body bg-white text-navy antialiased;
+    @apply font-body bg-[#0a0f1a] text-white antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -18,15 +18,15 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-gold-500 text-navy font-heading font-bold text-sm tracking-wider px-7 py-3.5 rounded transition-all duration-200 hover:bg-gold-600 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0;
+    @apply inline-flex items-center gap-2 bg-gold-500 text-navy font-heading font-bold text-sm tracking-wider px-7 py-3.5 rounded-lg transition-all duration-200 hover:bg-gold-400 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold-500/25 active:translate-y-0;
   }
 
   .btn-outline-light {
-    @apply inline-flex items-center gap-2 border border-white/25 text-white font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded transition-all duration-200 hover:border-gold-500 hover:text-gold-500;
+    @apply inline-flex items-center gap-2 border border-white/20 text-white font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded-lg transition-all duration-200 hover:border-gold-500 hover:text-gold-500 hover:bg-gold-500/5;
   }
 
   .btn-outline-dark {
-    @apply inline-flex items-center gap-2 border border-navy font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded transition-all duration-200 hover:bg-navy hover:text-white;
+    @apply inline-flex items-center gap-2 border border-white/20 text-white/80 font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded-lg transition-all duration-200 hover:border-gold-500 hover:text-gold-500 hover:bg-gold-500/5;
   }
 
   .section-tag {
@@ -34,7 +34,7 @@
   }
 
   .section-title {
-    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight text-navy mb-4;
+    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight text-white mb-4;
   }
 
   .section-title-light {
@@ -42,11 +42,12 @@
   }
 
   .section-sub {
-    @apply text-gray-500 text-base leading-relaxed max-w-xl mb-10;
+    @apply text-white/50 text-base leading-relaxed max-w-xl mb-10;
   }
 
   .card {
-    @apply bg-white rounded-xl border border-gray-100 p-6 transition-all duration-300;
+    @apply bg-navy-700 rounded-xl border p-6 transition-all duration-300;
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   .gold-divider {
@@ -62,6 +63,4 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #D97706; }
+::-webkit-scrollbar-track { background

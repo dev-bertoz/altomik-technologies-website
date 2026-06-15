@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom'
-import { Linkedin, Twitter, ArrowRight } from 'lucide-react'
+import { Linkedin, Twitter, Github, ArrowRight } from 'lucide-react'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import Animate from '@/components/ui/Animate'
 
 export const TEAM_DATA = [
   {
-    id: 'ceo', slug: 'ceo',
-    name: 'Brian Altomik', role: 'CEO & Co-Founder',
-    shortBio: 'Visionary leader with 10+ years in technology strategy and business development across East Africa.',
-    fullBio: `Brian founded Altomik Technologies with a singular vision: to make enterprise-grade technology accessible to every ambitious business in East Africa. With over a decade of experience spanning technology strategy, product management, and business development, he has led digital transformation projects for organisations ranging from fast-growing startups to established financial institutions.
+    id: 'ceo', slug: 'albert-nyabuto',
+    name: 'Albert Junior Nyabuto', role: 'Co-Founder & CEO',
+    photo: '/team/albert.jpg',
+    shortBio: 'Co-founder of Altomik Technologies with a background in ICT systems, network infrastructure, and full-stack software development.',
+    fullBio: `Albert Junior Nyabuto is the Co-Founder and CEO of Altomik Technologies, bringing a solid foundation in ICT systems, network infrastructure, and software development to the company he built from the ground up.
 
-Before founding Altomik, Brian held senior roles at leading IT consultancies in Nairobi, where he developed deep expertise in helping SMEs navigate complex technology decisions. He holds a Bachelor's degree in Computer Science from the University of Nairobi and an MBA from Strathmore Business School.
+With a Bachelor of Science in Computer Science from the University of Eldoret and hands-on experience spanning hospital IT environments, enterprise networking, and bespoke software development, Albert has developed a rare combination of practical technical depth and entrepreneurial drive.
 
-Brian is passionate about the role technology plays in Africa's economic development, and speaks regularly at technology and entrepreneurship events across the continent.`,
-    expertise: ['Technology Strategy', 'Business Development', 'Digital Transformation', 'Product Management', 'SME Advisory'],
+Before founding Altomik, Albert honed his skills across diverse environments — from deploying and securing network infrastructure supporting 800+ concurrent users at a private enterprise, to delivering ICT support in the mission-critical setting of Kenyatta University Teaching, Referral & Research Hospital (KUTRRH). His freelance work as an ICT and software consultant gave him a clear view of the gap in quality, reliable technology services available to East African SMEs — the gap that Altomik was built to close.
+
+Albert leads the technical delivery of web applications, API integrations, and IT infrastructure projects across Altomik's service lines. He builds the tools that power the company and the solutions that serve its clients.`,
+    expertise: ['Software Development', 'ICT Systems & Infrastructure', 'Network Administration', 'Web Applications', 'IT Consulting'],
     education: [
-      { degree: 'MBA, Business Administration', school: 'Strathmore Business School, Nairobi' },
-      { degree: 'BSc, Computer Science', school: 'University of Nairobi' },
+      { degree: 'BSc, Computer Science', school: 'University of Eldoret, Kenya (2022)' },
+      { degree: 'Introduction to Cybersecurity', school: 'Cisco Networking Academy (2022)' },
+      { degree: 'Cisco Networking Essentials', school: 'In Progress — Expected 2026' },
     ],
-    initials: 'BA', color: 'from-navy to-blue-900', accentColor: 'text-blue-400',
-    social: { linkedin: 'https://linkedin.com', twitter: 'https://twitter.com', email: 'brian@altomik.com' },
+    initials: 'AJ', color: 'from-navy to-blue-900', accentColor: 'text-blue-400',
+    social: { linkedin: 'https://linkedin.com/in/albert-nyabuto-045jnr', github: 'https://github.com/dev-bertoz', email: 'nyabutojnr@gmail.com' },
     featured: true,
   },
   {
@@ -82,16 +86,24 @@ function TeamCard({ member, index }) {
   return (
     <Animate variant="fade-up" delay={index * 100}>
       <Link to={`/team/${member.slug}`}
-        className="group block bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:border-gold-500/30 transition-all duration-300 hover:-translate-y-1 h-full"
+        className="group block bg-navy-700 rounded-2xl border border-white/8 overflow-hidden hover:border-gold-500/40 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 hover:-translate-y-1 h-full"
       >
         {/* Avatar */}
         <div className={`bg-gradient-to-br ${member.color} h-48 flex items-center justify-center relative overflow-hidden`}>
-          <div className="absolute inset-0 opacity-5"
+          <div className="absolute inset-0 opacity-[0.06]"
             style={{ backgroundImage: 'linear-gradient(rgba(245,158,11,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.8) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
           />
-          <div className="relative w-24 h-24 rounded-full border-2 border-gold-500/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-            <span className="font-heading font-extrabold text-3xl text-white">{member.initials}</span>
-          </div>
+          {member.photo ? (
+            <img
+              src={member.photo}
+              alt={member.name}
+              className="relative w-24 h-24 rounded-full border-2 border-gold-500/40 object-cover object-top group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="relative w-24 h-24 rounded-full border-2 border-gold-500/40 bg-white/5 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <span className="font-heading font-extrabold text-3xl text-white">{member.initials}</span>
+            </div>
+          )}
           {member.featured && (
             <div className="absolute top-3 right-3 bg-gold-500/20 border border-gold-500/40 text-gold-400 text-[10px] font-heading font-bold tracking-widest uppercase px-2 py-0.5 rounded-full">
               Founder
@@ -100,73 +112,39 @@ function TeamCard({ member, index }) {
         </div>
 
         <div className="p-6">
-          <h3 className="font-heading font-bold text-navy text-lg mb-0.5 group-hover:text-gold-600 transition-colors">
+          <h3 className="font-heading font-bold text-white text-lg mb-0.5 group-hover:text-gold-400 transition-colors">
             {member.name}
           </h3>
           <p className="text-gold-500 font-heading font-semibold text-xs tracking-wider uppercase mb-3">
             {member.role}
           </p>
-          <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-white/45 text-sm leading-relaxed mb-4 line-clamp-2">
             {member.shortBio}
           </p>
           <div className="flex flex-wrap gap-1.5 mb-5">
             {member.expertise.slice(0, 3).map((e) => (
-              <span key={e} className="bg-gray-100 text-gray-500 text-xs px-2.5 py-1 rounded-full">{e}</span>
+              <span key={e} className="bg-white/6 border border-white/10 text-white/50 text-xs px-2.5 py-1 rounded-full">{e}</span>
             ))}
           </div>
-          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+          <div className="flex items-center justify-between pt-4 border-t border-white/8">
             <div className="flex gap-2">
               {member.social.linkedin && (
                 <span onClick={(e) => { e.preventDefault(); window.open(member.social.linkedin, '_blank') }}
-                  className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-colors cursor-pointer">
+                  className="w-7 h-7 rounded border border-white/15 flex items-center justify-center text-white/40 hover:border-gold-500 hover:text-gold-500 transition-colors cursor-pointer">
                   <Linkedin size={12} />
                 </span>
               )}
               {member.social.twitter && (
                 <span onClick={(e) => { e.preventDefault(); window.open(member.social.twitter, '_blank') }}
-                  className="w-7 h-7 rounded border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-colors cursor-pointer">
+                  className="w-7 h-7 rounded border border-white/15 flex items-center justify-center text-white/40 hover:border-gold-500 hover:text-gold-500 transition-colors cursor-pointer">
                   <Twitter size={12} />
                 </span>
               )}
+              {member.social.github && (
+                <span onClick={(e) => { e.preventDefault(); window.open(member.social.github, '_blank') }}
+                  className="w-7 h-7 rounded border border-white/15 flex items-center justify-center text-white/40 hover:border-gold-500 hover:text-gold-500 transition-colors cursor-pointer">
+                  <Github size={12} />
+                </span>
+              )}
             </div>
-            <span className="inline-flex items-center gap-1 text-gold-500 font-heading font-bold text-xs group-hover:gap-2 transition-all">
-              View profile <ArrowRight size={12} />
-            </span>
-          </div>
-        </div>
-      </Link>
-    </Animate>
-  )
-}
-
-export default function Team({ limit }) {
-  const members = limit ? TEAM_DATA.slice(0, limit) : TEAM_DATA
-
-  return (
-    <SectionWrapper className="bg-white" id="team">
-      <div className="text-center mb-14">
-        <Animate variant="fade-up">
-          <p className="section-tag flex justify-center">The people behind the work</p>
-          <h2 className="section-title">Meet our founders & team</h2>
-          <p className="text-gray-500 text-base leading-relaxed max-w-xl mx-auto">
-            A founding team that combines deep technical expertise, business acumen, and a shared passion for elevating East African businesses through technology.
-          </p>
-        </Animate>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {members.map((member, i) => (
-          <TeamCard key={member.id} member={member} index={i} />
-        ))}
-      </div>
-
-      {limit && TEAM_DATA.length > limit && (
-        <div className="text-center mt-10">
-          <Link to="/about#team" className="btn-outline-dark inline-flex items-center gap-2">
-            Meet the full team <ArrowRight size={16} />
-          </Link>
-        </div>
-      )}
-    </SectionWrapper>
-  )
-}
+            <span className="inline-flex items-center gap-1 text-gold-500 

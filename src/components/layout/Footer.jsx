@@ -29,7 +29,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-5">
-              <Logo className="w-9 h-9" />
+              <Logo className="h-10 w-10" variant="dark" />
               <div className="font-heading font-bold text-sm tracking-wide">
                 ALTOMIK <span className="text-gold-500">TECHNOLOGIES</span>
               </div>
@@ -152,6 +152,4 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
-  )
-}
+   

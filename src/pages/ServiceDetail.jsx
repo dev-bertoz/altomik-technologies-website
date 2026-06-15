@@ -38,6 +38,7 @@ const SERVICE_DETAILS = {
       { title: 'ERP & CRM Systems', desc: 'Custom enterprise resource planning and customer relationship management systems tailored to your workflows.' },
       { title: 'SaaS Products', desc: 'End-to-end SaaS product development — from architecture and MVP to launch and ongoing iteration.' },
       { title: 'API Development & Integration', desc: 'RESTful and GraphQL APIs, third-party integrations (payment gateways, SMS, logistics APIs, and more).' },
+      { title: 'Local API Integrations', desc: 'Specialists in Kenya-specific integrations: Lipa Na Mpesa, KRA eTIMS, SHA, Bulk SMS, Bulk WhatsApp, and SEO Dashboards — so your software is market-ready from day one.', integrations: ['Lipa Na Mpesa', 'KRA eTIMS', 'Bulk SMS', 'Bulk WhatsApp', 'SEO Dashboards', 'SHA Integration'] },
       { title: 'Legacy System Modernisation', desc: 'Migrate and modernise legacy systems without disrupting business operations.' },
     ],
     process: [
@@ -197,14 +198,14 @@ function FAQ({ items }) {
     <div className="space-y-4">
       {items.map((item, i) => (
         <Animate key={i} variant="fade-up" delay={i * 80}>
-          <div className="bg-white border border-gray-100 rounded-xl p-5">
+          <div className="bg-navy-700 border border-white/8 rounded-xl p-5 hover:border-gold-500/25 transition-colors">
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 rounded-full bg-gold-500/10 border border-gold-500/25 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <MessageSquare size={11} className="text-gold-500" />
               </div>
               <div>
-                <p className="font-heading font-bold text-navy text-sm mb-2">{item.q}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.a}</p>
+                <p className="font-heading font-bold text-white text-sm mb-2">{item.q}</p>
+                <p className="text-white/50 text-sm leading-relaxed">{item.a}</p>
               </div>
             </div>
           </div>
@@ -259,7 +260,7 @@ export default function ServiceDetail() {
                 {detail.heroSub}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="btn-primary">
+                <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
                   Get a quote <ArrowRight size={16} />
                 </Link>
                 <Link to="/contact" className="btn-outline-light">
@@ -270,17 +271,17 @@ export default function ServiceDetail() {
 
             {/* Pricing card */}
             <Animate variant="fade-left">
-              <div className="bg-white/5 border border-gold-500/20 rounded-2xl p-8">
+              <div className="bg-navy-700 border border-gold-500/20 rounded-2xl p-8">
                 <p className="font-heading font-bold text-xs tracking-widest uppercase text-gold-500 mb-2">Pricing</p>
                 <p className="font-heading font-extrabold text-3xl text-white mb-1">{service.pricing}</p>
-                <p className="text-white/40 text-sm mb-6">Tailored to your specific requirements</p>
+                <p className="text-white/35 text-sm mb-6">Tailored to your specific requirements</p>
                 <div className="space-y-3 mb-6">
                   {service.features.map((f) => (
                     <div key={f} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center flex-shrink-0">
                         <Check size={10} className="text-gold-500" />
                       </div>
-                      <span className="text-white/70 text-sm">{f}</span>
+                      <span className="text-white/65 text-sm">{f}</span>
                     </div>
                   ))}
                 </div>
@@ -294,7 +295,7 @@ export default function ServiceDetail() {
       </section>
 
       {/* What we offer */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0f1a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <Animate variant="fade-up">
@@ -303,12 +304,21 @@ export default function ServiceDetail() {
             </Animate>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {detail.whatWeOffer.map(({ title, desc }, i) => (
+            {detail.whatWeOffer.map(({ title, desc, integrations }, i) => (
               <Animate key={title} variant="fade-up" delay={i * 80}>
-                <div className="bg-gray-50 border border-gray-100 rounded-xl p-6 hover:border-gold-500/30 hover:bg-white hover:shadow-sm transition-all duration-200 group h-full">
+                <div className="bg-navy-700 border border-white/8 rounded-xl p-6 hover:border-gold-500/30 hover:bg-navy-600 transition-all duration-200 group h-full flex flex-col">
                   <div className="w-2 h-2 rounded-full bg-gold-500 mb-4 group-hover:scale-125 transition-transform" />
-                  <h3 className="font-heading font-bold text-navy mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="font-heading font-bold text-white mb-2">{title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+                  {integrations && (
+                    <div className="mt-4 pt-4 border-t border-white/8 flex flex-wrap gap-1.5">
+                      {integrations.map((name) => (
+                        <span key={name} className="bg-gold-500/10 border border-gold-500/25 text-gold-400 text-[10px] font-heading font-bold tracking-wide px-2.5 py-1 rounded-full">
+                          {name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </Animate>
             ))}
@@ -317,7 +327,7 @@ export default function ServiceDetail() {
       </section>
 
       {/* Process */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-navy">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <Animate variant="fade-up">
@@ -328,12 +338,12 @@ export default function ServiceDetail() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {detail.process.map(({ step, title, desc }, i) => (
               <Animate key={step} variant="fade-up" delay={i * 100}>
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full bg-navy border-2 border-gold-500/30 flex items-center justify-center font-heading font-extrabold text-gold-500 text-lg mb-4 mx-auto">
+                <div className="text-center group">
+                  <div className="w-12 h-12 rounded-full bg-[#0a0f1a] border-2 border-gold-500/30 flex items-center justify-center font-heading font-extrabold text-gold-500 text-lg mb-4 mx-auto group-hover:border-gold-500 transition-colors">
                     {step}
                   </div>
-                  <h3 className="font-heading font-bold text-navy mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                  <h3 className="font-heading font-bold text-white mb-2">{title}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
                 </div>
               </Animate>
             ))}
@@ -342,17 +352,17 @@ export default function ServiceDetail() {
       </section>
 
       {/* FAQs */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0f1a]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <Animate variant="fade-right">
               <p className="section-tag">FAQs</p>
               <h2 className="section-title">Common questions</h2>
-              <p className="text-gray-500 leading-relaxed mb-6">
+              <p className="text-white/50 leading-relaxed mb-6">
                 Have a question not answered here?{' '}
                 <Link to="/contact" className="text-gold-500 font-medium hover:underline">Get in touch</Link>.
               </p>
-              <Link to="/contact" className="btn-outline-dark inline-flex items-center gap-2">
+              <Link to="/contact" className="btn-outline-light inline-flex items-center gap-2">
                 Talk to our team <ArrowRight size={15} />
               </Link>
             </Animate>
@@ -362,32 +372,13 @@ export default function ServiceDetail() {
       </section>
 
       {/* Other services */}
-      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-navy">
         <div className="max-w-7xl mx-auto">
           <Animate variant="fade-up">
-            <h3 className="font-heading font-bold text-navy text-lg mb-7 text-center">Explore other services</h3>
+            <h3 className="font-heading font-bold text-white text-lg mb-7 text-center">Explore other services</h3>
           </Animate>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {others.map((s, i) => (
               <Animate key={s.id} variant="fade-up" delay={i * 70}>
                 <Link to={`/services/${s.id}`}
-                  className="group flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-4 hover:border-gold-500/30 hover:shadow-md transition-all">
-                  <div className="w-9 h-9 rounded-lg bg-gold-500/8 border border-gold-500/15 flex items-center justify-center text-gold-500 flex-shrink-0 group-hover:bg-gold-500/15 transition-colors">
-                    <ServiceIcon type={s.id} className="w-4 h-4" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-heading font-bold text-navy text-sm group-hover:text-gold-600 transition-colors truncate">{s.title}</p>
-                    <p className="text-gray-400 text-xs truncate">{s.pricing}</p>
-                  </div>
-                  <ArrowRight size={13} className="text-gray-300 group-hover:text-gold-500 flex-shrink-0 transition-colors" />
-                </Link>
-              </Animate>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABanner />
-    </>
-  )
-}
+                  className="group flex

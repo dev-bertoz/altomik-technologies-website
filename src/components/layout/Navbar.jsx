@@ -25,7 +25,7 @@ export default function Navbar() {
   const hidden = scrollDir === 'down' && scrolled && !mobileOpen
 
   const bgClass = scrolled
-    ? 'bg-navy/95 backdrop-blur-md border-b border-gold-500/20 shadow-lg shadow-black/20'
+    ? 'bg-[#0a0f1a]/95 backdrop-blur-md border-b border-gold-500/15 shadow-lg shadow-black/40'
     : isHome
       ? 'bg-transparent'
       : 'bg-navy border-b border-gold-500/10'
@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           <Link to="/" className="flex items-center gap-2.5">
-            <Logo className="w-9 h-9" />
+            <Logo className="h-10 w-10" variant="dark" />
             <div className="font-heading font-bold text-sm tracking-wide text-white">
               ALTOMIK <span className="text-gold-500">TECHNOLOGIES</span>
             </div>
@@ -107,7 +107,4 @@ export default function Navbar() {
             Get In Touch
           </Link>
         </nav>
-      </div>
-    </header>
-  )
-}
+      </div
