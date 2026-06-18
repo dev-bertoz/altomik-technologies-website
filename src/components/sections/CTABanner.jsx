@@ -28,7 +28,15 @@ export default function CTABanner() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/contact"
               className="inline-flex items-center gap-2 bg-navy text-white font-heading font-bold text-sm tracking-wider px-8 py-4 rounded-lg transition-all hover:bg-navy-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy/40">
-              Book a free consultation <ArrowRight size={16} />
+              Book a consultation <ArrowRight size={16} />
             </Link>
             <Link to="/services"
-              className="inline-flex items-center gap-2 border-2 border-navy/30 text-na
+              className="inline-flex items-center gap-2 border-2 border-navy/30 text-navy font-heading font-bold text-sm tracking-wider px-8 py-4 rounded-lg transition-all hover:border-navy hover:bg-navy/10">
+              View all services
+            </Link>
+          </div>
+        </Animate>
+      </div>
+    </section>
+  )
+}

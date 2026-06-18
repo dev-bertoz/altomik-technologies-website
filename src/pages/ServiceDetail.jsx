@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { useTheme } from '@/context/ThemeContext'
 import { ArrowLeft, Check, ArrowRight, MessageSquare } from 'lucide-react'
 import { SERVICES_DATA } from '@/components/sections/ServicesGrid'
 import ServiceIcon from '@/components/ui/ServiceIcon'
@@ -191,21 +192,90 @@ const SERVICE_DETAILS = {
       { q: 'Do you create the content too?', a: 'Yes — copywriting, graphic design, and video scripts are available as part of our full-service packages.' },
     ],
   },
+  graphic: {
+    tagline: 'Design that tells your story.',
+    heroSub: 'Professional brand identities, logos, and marketing visuals that make your business impossible to ignore.',
+    whatWeOffer: [
+      { title: 'Logo Design & Brand Identity', desc: 'From concept to final files — logos designed to work across print, digital, and signage, with full brand guidelines.' },
+      { title: 'Brand Style Guidelines', desc: 'A complete brand manual covering colour palettes, typography, logo usage, and tone of voice so your brand is consistent everywhere.' },
+      { title: 'Social Media Graphics', desc: 'Post templates, story designs, cover images, and ad creatives sized and optimised for every platform.' },
+      { title: 'Marketing Materials', desc: 'Flyers, posters, brochures, and event materials designed for print and digital distribution.' },
+      { title: 'Email & Newsletter Templates', desc: 'On-brand HTML email templates and newsletter designs that work across all major email clients.' },
+      { title: 'Packaging & Label Design', desc: 'Product packaging and label designs that stand out on the shelf and communicate your brand clearly.' },
+    ],
+    process: [
+      { step: '1', title: 'Discovery', desc: 'We learn about your brand, audience, and design preferences through a brief questionnaire and call.' },
+      { step: '2', title: 'Concepts', desc: 'We present 2–3 initial design concepts for your review and feedback.' },
+      { step: '3', title: 'Refinement', desc: 'We refine your chosen concept based on feedback until it is exactly right.' },
+      { step: '4', title: 'Final Delivery', desc: 'All final files delivered in every format you need — PNG, SVG, PDF, and editable source files.' },
+    ],
+    faqs: [
+      { q: 'How many revision rounds are included?', a: 'All packages include at least 3 revision rounds. We keep going until you are happy.' },
+      { q: 'What file formats will I receive?', a: 'You receive all source files (AI/PSD) plus export-ready PNG, SVG, PDF, and JPEG formats.' },
+      { q: 'Can you match an existing brand style?', a: 'Absolutely — if you have existing brand elements, we design within and extend your current identity.' },
+    ],
+  },
+  profile: {
+    tagline: 'Your business, beautifully presented.',
+    heroSub: 'Compelling company profiles, brochures, and corporate documents that open doors and close deals.',
+    whatWeOffer: [
+      { title: 'Company Profile Design & Writing', desc: 'Full design and copywriting for a professional company profile that captures your story, services, and credibility.' },
+      { title: 'Corporate Brochures', desc: 'Tri-fold, bi-fold, or multi-page brochures that communicate your value proposition clearly and professionally.' },
+      { title: 'Pitch Deck Design', desc: 'Investor-ready and client pitch decks that are visually compelling and structured to persuade.' },
+      { title: 'Annual Reports', desc: 'End-of-year reports combining data visualisation, narrative, and design to communicate your results.' },
+      { title: 'Product & Service Catalogues', desc: 'Detailed catalogues for your product range or service offerings, designed for both print and digital distribution.' },
+      { title: 'Capability Statements', desc: 'One-page and multi-page capability statements for tenders, RFPs, and government contracts.' },
+    ],
+    process: [
+      { step: '1', title: 'Brief & Content', desc: 'We gather information about your company, services, and objectives — and help you write the content if needed.' },
+      { step: '2', title: 'Structure & Layout', desc: 'We propose a document structure and layout approach for your approval.' },
+      { step: '3', title: 'Design', desc: 'Full design using your brand colours, fonts, and imagery.' },
+      { step: '4', title: 'Delivery', desc: 'Print-ready PDF and editable source files delivered, ready to send or print.' },
+    ],
+    faqs: [
+      { q: 'Do you write the content or do I provide it?', a: 'Either — we can work with content you provide, or offer a full copywriting service as part of the package.' },
+      { q: 'Can I print the profile myself?', a: 'Yes — we deliver print-ready PDF files you can print anywhere, or we can arrange professional printing for you.' },
+      { q: 'How long does it take?', a: 'A standard company profile takes 5–7 business days from receiving all content and brand assets.' },
+    ],
+  },
+  print: {
+    tagline: 'Your brand, printed to perfection.',
+    heroSub: 'High-quality print and branded merchandise — designed professionally, produced fast, delivered to your door.',
+    whatWeOffer: [
+      { title: 'Business Cards', desc: 'Premium business cards in a range of finishes — matte, gloss, soft-touch, and spot UV — that make a lasting first impression.' },
+      { title: 'Flyers & Brochures', desc: 'Full-colour A4, A5, and DL flyers and brochures printed on quality stock for marketing campaigns and events.' },
+      { title: 'Letterheads & Envelopes', desc: 'Branded stationery sets that bring professionalism to every piece of correspondence you send.' },
+      { title: 'Vehicle Branding & Signage', desc: 'Car wraps, van graphics, office signage, and outdoor banners — designed and produced for maximum impact.' },
+      { title: 'Banners & Pull-up Stands', desc: 'Exhibition banners, pull-up stands, and event signage that carry your brand into every room.' },
+      { title: 'Branded Merchandise', desc: 'T-shirts, polo shirts, mugs, pens, notebooks, and corporate gifts printed with your brand for staff and clients.' },
+    ],
+    process: [
+      { step: '1', title: 'Order & Brief', desc: 'Tell us what you need — quantity, size, finish, and any design requirements.' },
+      { step: '2', title: 'Design', desc: 'We create or adapt your design to production-ready artwork, then send a digital proof for approval.' },
+      { step: '3', title: 'Print Production', desc: 'Your order goes to print with our trusted print partners, on schedule.' },
+      { step: '4', title: 'Delivery', desc: 'Printed items collected or delivered directly to you within the agreed turnaround time.' },
+    ],
+    faqs: [
+      { q: 'What is the minimum order quantity for business cards?', a: 'We print from as few as 50 cards. Larger quantities bring the unit cost down significantly.' },
+      { q: 'How long does print production take?', a: 'Standard business cards: 2–3 business days. Banners and signage: 3–5 days. Rush options available.' },
+      { q: 'Can I provide my own design files?', a: 'Yes — if you have print-ready artwork, we check it and send directly to print. No design fee charged.' },
+    ],
+  },
 }
 
-function FAQ({ items }) {
+function FAQ({ items, dark }) {
   return (
     <div className="space-y-4">
       {items.map((item, i) => (
         <Animate key={i} variant="fade-up" delay={i * 80}>
-          <div className="bg-navy-700 border border-white/8 rounded-xl p-5 hover:border-gold-500/25 transition-colors">
+          <div className={`border rounded-xl p-5 transition-colors hover:border-gold-500/25 ${dark ? 'bg-navy-700 border-white/8' : 'bg-slate-50 border-slate-200'}`}>
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 rounded-full bg-gold-500/10 border border-gold-500/25 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <MessageSquare size={11} className="text-gold-500" />
               </div>
               <div>
-                <p className="font-heading font-bold text-white text-sm mb-2">{item.q}</p>
-                <p className="text-white/50 text-sm leading-relaxed">{item.a}</p>
+                <p className={`font-heading font-bold text-sm mb-2 ${dark ? 'text-white' : 'text-navy'}`}>{item.q}</p>
+                <p className={`text-sm leading-relaxed ${dark ? 'text-white/50' : 'text-slate-500'}`}>{item.a}</p>
               </div>
             </div>
           </div>
@@ -216,6 +286,7 @@ function FAQ({ items }) {
 }
 
 export default function ServiceDetail() {
+  const { dark } = useTheme()
   const { id } = useParams()
   const service = SERVICES_DATA.find((s) => s.id === id)
   const detail = SERVICE_DETAILS[id]
@@ -227,16 +298,16 @@ export default function ServiceDetail() {
   return (
     <>
       {/* Back nav */}
-      <div className="bg-navy pt-20 pb-0 px-4 sm:px-6 lg:px-8 border-b border-white/8">
+      <div className={`pt-20 pb-0 px-4 sm:px-6 lg:px-8 border-b ${dark ? 'bg-navy border-white/8' : 'bg-white border-slate-200'}`}>
         <div className="max-w-7xl mx-auto py-4">
-          <Link to="/services" className="inline-flex items-center gap-2 text-white/50 hover:text-gold-500 text-sm font-heading font-medium transition-colors">
+          <Link to="/services" className={`inline-flex items-center gap-2 text-sm font-heading font-medium transition-colors hover:text-gold-500 ${dark ? 'text-white/50' : 'text-slate-400'}`}>
             <ArrowLeft size={14} /> Back to Services
           </Link>
         </div>
       </div>
 
       {/* Hero */}
-      <section className="bg-navy pb-16 px-4 sm:px-6 lg:px-8">
+      <section className={`${dark ? 'bg-navy' : 'bg-white'} pb-16 px-4 sm:px-6 lg:px-8`}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-10">
             <Animate variant="fade-right">
@@ -250,38 +321,38 @@ export default function ServiceDetail() {
                   </span>
                 )}
               </div>
-              <h1 className="font-heading font-extrabold text-4xl md:text-5xl text-white tracking-tight leading-tight mb-4">
+              <h1 className={`font-heading font-extrabold text-4xl md:text-5xl tracking-tight leading-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
                 {service.title}
               </h1>
               <p className="text-gold-500 font-heading font-semibold text-lg mb-4 italic">
                 "{detail.tagline}"
               </p>
-              <p className="text-white/55 text-base leading-relaxed mb-8 max-w-lg">
+              <p className={`text-base leading-relaxed mb-8 max-w-lg ${dark ? 'text-white/55' : 'text-slate-500'}`}>
                 {detail.heroSub}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
                   Get a quote <ArrowRight size={16} />
                 </Link>
-                <Link to="/contact" className="btn-outline-light">
-                  Book free consultation
+                <Link to="/contact" className={`inline-flex items-center gap-2 border font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded-lg transition-all hover:border-gold-500 hover:text-gold-500 ${dark ? 'border-white/20 text-white' : 'border-slate-300 text-navy'}`}>
+                  Book consultation
                 </Link>
               </div>
             </Animate>
 
             {/* Pricing card */}
             <Animate variant="fade-left">
-              <div className="bg-navy-700 border border-gold-500/20 rounded-2xl p-8">
+              <div className={`border border-gold-500/20 rounded-2xl p-8 ${dark ? 'bg-navy-700' : 'bg-slate-50'}`}>
                 <p className="font-heading font-bold text-xs tracking-widest uppercase text-gold-500 mb-2">Pricing</p>
-                <p className="font-heading font-extrabold text-3xl text-white mb-1">{service.pricing}</p>
-                <p className="text-white/35 text-sm mb-6">Tailored to your specific requirements</p>
+                <p className={`font-heading font-extrabold text-3xl mb-1 ${dark ? 'text-white' : 'text-navy'}`}>{service.pricing}</p>
+                <p className={`text-sm mb-6 ${dark ? 'text-white/35' : 'text-slate-400'}`}>Tailored to your specific requirements</p>
                 <div className="space-y-3 mb-6">
                   {service.features.map((f) => (
                     <div key={f} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center flex-shrink-0">
                         <Check size={10} className="text-gold-500" />
                       </div>
-                      <span className="text-white/65 text-sm">{f}</span>
+                      <span className={`text-sm ${dark ? 'text-white/65' : 'text-slate-600'}`}>{f}</span>
                     </div>
                   ))}
                 </div>
@@ -295,25 +366,27 @@ export default function ServiceDetail() {
       </section>
 
       {/* What we offer */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0f1a]">
+      <section className={`py-16 px-4 sm:px-6 lg:px-8 ${dark ? 'bg-[#0a0f1a]' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <Animate variant="fade-up">
               <p className="section-tag flex justify-center">What's included</p>
-              <h2 className="section-title">Everything in {service.title}</h2>
+              <h2 className={`font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
+                Everything in {service.title}
+              </h2>
             </Animate>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {detail.whatWeOffer.map(({ title, desc, integrations }, i) => (
               <Animate key={title} variant="fade-up" delay={i * 80}>
-                <div className="bg-navy-700 border border-white/8 rounded-xl p-6 hover:border-gold-500/30 hover:bg-navy-600 transition-all duration-200 group h-full flex flex-col">
+                <div className={`border rounded-xl p-6 transition-all duration-200 group h-full flex flex-col hover:border-gold-500/30 ${dark ? 'bg-navy-700 border-white/8 hover:bg-navy-600' : 'bg-white border-slate-200 hover:shadow-md'}`}>
                   <div className="w-2 h-2 rounded-full bg-gold-500 mb-4 group-hover:scale-125 transition-transform" />
-                  <h3 className="font-heading font-bold text-white mb-2">{title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+                  <h3 className={`font-heading font-bold mb-2 ${dark ? 'text-white' : 'text-navy'}`}>{title}</h3>
+                  <p className={`text-sm leading-relaxed ${dark ? 'text-white/50' : 'text-slate-500'}`}>{desc}</p>
                   {integrations && (
-                    <div className="mt-4 pt-4 border-t border-white/8 flex flex-wrap gap-1.5">
+                    <div className={`mt-4 pt-4 border-t flex flex-wrap gap-1.5 ${dark ? 'border-white/8' : 'border-slate-100'}`}>
                       {integrations.map((name) => (
-                        <span key={name} className="bg-gold-500/10 border border-gold-500/25 text-gold-400 text-[10px] font-heading font-bold tracking-wide px-2.5 py-1 rounded-full">
+                        <span key={name} className="bg-gold-500/10 border border-gold-500/25 text-gold-500 text-[10px] font-heading font-bold tracking-wide px-2.5 py-1 rounded-full">
                           {name}
                         </span>
                       ))}
@@ -327,23 +400,25 @@ export default function ServiceDetail() {
       </section>
 
       {/* Process */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-navy">
+      <section className={`py-16 px-4 sm:px-6 lg:px-8 ${dark ? 'bg-navy' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <Animate variant="fade-up">
               <p className="section-tag flex justify-center">How we work</p>
-              <h2 className="section-title">Our {service.title} process</h2>
+              <h2 className={`font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
+                Our {service.title} process
+              </h2>
             </Animate>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {detail.process.map(({ step, title, desc }, i) => (
               <Animate key={step} variant="fade-up" delay={i * 100}>
                 <div className="text-center group">
-                  <div className="w-12 h-12 rounded-full bg-[#0a0f1a] border-2 border-gold-500/30 flex items-center justify-center font-heading font-extrabold text-gold-500 text-lg mb-4 mx-auto group-hover:border-gold-500 transition-colors">
+                  <div className={`w-12 h-12 rounded-full border-2 border-gold-500/30 flex items-center justify-center font-heading font-extrabold text-gold-500 text-lg mb-4 mx-auto group-hover:border-gold-500 transition-colors ${dark ? 'bg-[#0a0f1a]' : 'bg-white'}`}>
                     {step}
                   </div>
-                  <h3 className="font-heading font-bold text-white mb-2">{title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                  <h3 className={`font-heading font-bold mb-2 ${dark ? 'text-white' : 'text-navy'}`}>{title}</h3>
+                  <p className={`text-sm leading-relaxed ${dark ? 'text-white/45' : 'text-slate-500'}`}>{desc}</p>
                 </div>
               </Animate>
             ))}
@@ -352,33 +427,54 @@ export default function ServiceDetail() {
       </section>
 
       {/* FAQs */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0f1a]">
+      <section className={`py-16 px-4 sm:px-6 lg:px-8 ${dark ? 'bg-[#0a0f1a]' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <Animate variant="fade-right">
               <p className="section-tag">FAQs</p>
-              <h2 className="section-title">Common questions</h2>
-              <p className="text-white/50 leading-relaxed mb-6">
+              <h2 className={`font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
+                Common questions
+              </h2>
+              <p className={`leading-relaxed mb-6 ${dark ? 'text-white/50' : 'text-slate-500'}`}>
                 Have a question not answered here?{' '}
                 <Link to="/contact" className="text-gold-500 font-medium hover:underline">Get in touch</Link>.
               </p>
-              <Link to="/contact" className="btn-outline-light inline-flex items-center gap-2">
+              <Link to="/contact" className={`inline-flex items-center gap-2 border font-heading font-semibold text-sm tracking-wider px-7 py-3.5 rounded-lg transition-all hover:border-gold-500 hover:text-gold-500 ${dark ? 'border-white/20 text-white' : 'border-slate-300 text-navy'}`}>
                 Talk to our team <ArrowRight size={15} />
               </Link>
             </Animate>
-            <FAQ items={detail.faqs} />
+            <FAQ items={detail.faqs} dark={dark} />
           </div>
         </div>
       </section>
 
       {/* Other services */}
-      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-navy">
+      <section className={`py-14 px-4 sm:px-6 lg:px-8 ${dark ? 'bg-navy' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto">
           <Animate variant="fade-up">
-            <h3 className="font-heading font-bold text-white text-lg mb-7 text-center">Explore other services</h3>
+            <h3 className={`font-heading font-bold text-lg mb-7 text-center ${dark ? 'text-white' : 'text-navy'}`}>Explore other services</h3>
           </Animate>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {others.map((s, i) => (
               <Animate key={s.id} variant="fade-up" delay={i * 70}>
                 <Link to={`/services/${s.id}`}
-                  className="group flex
+                  className={`group flex items-center gap-3 border rounded-xl p-4 transition-all ${dark ? 'bg-navy-700 border-white/8 hover:border-gold-500/30 hover:bg-navy-600' : 'bg-white border-slate-200 hover:border-gold-500/30'}`}>
+                  <div className="w-9 h-9 rounded-lg bg-gold-500/10 border border-gold-500/15 flex items-center justify-center text-gold-500 flex-shrink-0 group-hover:bg-gold-500/20 transition-colors">
+                    <ServiceIcon type={s.id} className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className={`font-heading font-bold text-sm group-hover:text-gold-500 transition-colors truncate ${dark ? 'text-white' : 'text-navy'}`}>{s.title}</p>
+                    <p className={`text-xs truncate ${dark ? 'text-white/35' : 'text-slate-400'}`}>{s.pricing}</p>
+                  </div>
+                  <ArrowRight size={13} className={`group-hover:text-gold-500 flex-shrink-0 transition-colors ${dark ? 'text-white/20' : 'text-slate-300'}`} />
+                </Link>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTABanner />
+    </>
+  )
+}

@@ -1,5 +1,6 @@
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import Animate from '@/components/ui/Animate'
+import { useTheme } from '@/context/ThemeContext'
 
 const STEPS = [
   { num: '1', title: 'Discovery Call', desc: 'We listen first. Understand your goals, constraints, and current setup before recommending anything.' },
@@ -9,13 +10,16 @@ const STEPS = [
 ]
 
 export default function Process() {
+  const { dark } = useTheme()
   return (
-    <SectionWrapper className="bg-navy" id="process">
+    <SectionWrapper className={dark ? 'bg-navy' : 'bg-white'} id="process">
       <div className="text-center mb-14">
         <Animate variant="fade-up">
           <p className="section-tag flex justify-center">How it works</p>
-          <h2 className="section-title">From conversation to solution</h2>
-          <p className="text-white/50 text-base leading-relaxed max-w-xl mx-auto">
+          <h2 className={`font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
+            From conversation to solution
+          </h2>
+          <p className={`text-base leading-relaxed max-w-xl mx-auto ${dark ? 'text-white/50' : 'text-slate-500'}`}>
             Our engagement process is straightforward — no jargon, no surprises, just results.
           </p>
         </Animate>
@@ -25,12 +29,15 @@ export default function Process() {
         {STEPS.map(({ num, title, desc }, i) => (
           <Animate key={num} variant="fade-up" delay={i * 120}>
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-[#0a0f1a] border-2 border-gold-500/30 flex items-center justify-center mx-auto mb-5 font-heading font-extrabold text-xl text-gold-500 group-hover:border-gold-500 group-hover:scale-110 transition-all duration-300 relative z-10 shadow-lg shadow-black/30">
+              <div className={`w-16 h-16 rounded-full border-2 border-gold-500/30 flex items-center justify-center mx-auto mb-5 font-heading font-extrabold text-xl text-gold-500 group-hover:border-gold-500 group-hover:scale-110 transition-all duration-300 relative z-10 shadow-lg ${dark ? 'bg-[#0a0f1a] shadow-black/30' : 'bg-white shadow-slate-200'}`}>
                 {num}
               </div>
-              <h3 className="font-heading font-bold text-white text-base mb-2">{title}</h3>
-              <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+              <h3 className={`font-heading font-bold text-base mb-2 ${dark ? 'text-white' : 'text-navy'}`}>{title}</h3>
+              <p className={`text-sm leading-relaxed ${dark ? 'text-white/45' : 'text-slate-500'}`}>{desc}</p>
             </div>
           </Animate>
         ))}
-      </di
+      </div>
+    </SectionWrapper>
+  )
+}

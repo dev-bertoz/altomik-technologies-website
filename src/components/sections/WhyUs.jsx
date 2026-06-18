@@ -1,5 +1,6 @@
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import Animate from '@/components/ui/Animate'
+import { useTheme } from '@/context/ThemeContext'
 
 const REASONS = [
   { num: '01', title: 'East Africa Expertise', desc: 'Deep understanding of local markets, regulations, and infrastructure. We know the terrain and tailor solutions for the region.' },
@@ -9,13 +10,16 @@ const REASONS = [
 ]
 
 export default function WhyUs() {
+  const { dark } = useTheme()
   return (
-    <SectionWrapper className="bg-navy" id="why">
+    <SectionWrapper className={dark ? 'bg-navy' : 'bg-white'} id="why">
       <div className="text-center mb-14">
         <Animate variant="fade-up">
           <p className="section-tag justify-center flex">Why Altomik</p>
-          <h2 className="section-title-light">Built different. Proven results.</h2>
-          <p className="text-white/50 text-base leading-relaxed max-w-xl mx-auto">
+          <h2 className={`font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4 ${dark ? 'text-white' : 'text-navy'}`}>
+            Built different. Proven results.
+          </h2>
+          <p className={`text-base leading-relaxed max-w-xl mx-auto ${dark ? 'text-white/50' : 'text-slate-500'}`}>
             Enterprise-grade technology delivered with the speed and flexibility your business actually needs.
           </p>
         </Animate>
@@ -23,10 +27,10 @@ export default function WhyUs() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {REASONS.map(({ num, title, desc }, i) => (
           <Animate key={num} variant="fade-up" delay={i * 100}>
-            <div className="border border-gold-500/15 rounded-xl p-6 hover:border-gold-500/40 hover:bg-white/3 transition-all duration-300 group h-full">
+            <div className={`border rounded-xl p-6 transition-all duration-300 group h-full ${dark ? 'border-gold-500/15 hover:border-gold-500/40 hover:bg-white/3' : 'border-slate-200 hover:border-gold-500/40 hover:shadow-md bg-white'}`}>
               <div className="font-heading font-extrabold text-4xl text-gold-500/20 group-hover:text-gold-500/30 transition-colors leading-none mb-5">{num}</div>
-              <h3 className="font-heading font-bold text-white text-base mb-3">{title}</h3>
-              <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+              <h3 className={`font-heading font-bold text-base mb-3 ${dark ? 'text-white' : 'text-navy'}`}>{title}</h3>
+              <p className={`text-sm leading-relaxed ${dark ? 'text-white/45' : 'text-slate-500'}`}>{desc}</p>
             </div>
           </Animate>
         ))}

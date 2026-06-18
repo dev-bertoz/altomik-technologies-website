@@ -8,7 +8,20 @@
   }
 
   body {
-    @apply font-body bg-[#0a0f1a] text-white antialiased;
+    @apply font-body antialiased;
+    /* dark default */
+    background-color: #0a0f1a;
+    color: #ffffff;
+  }
+
+  html.dark body {
+    background-color: #0a0f1a;
+    color: #ffffff;
+  }
+
+  html:not(.dark) body {
+    background-color: #ffffff;
+    color: #0f172a;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -34,33 +47,141 @@
   }
 
   .section-title {
-    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight text-white mb-4;
+    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4;
+    color: #ffffff;
+  }
+
+  html:not(.dark) .section-title {
+    color: #0f172a;
   }
 
   .section-title-light {
-    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight text-white mb-4;
+    @apply font-heading font-extrabold text-3xl md:text-4xl leading-tight tracking-tight mb-4;
+    color: #ffffff;
+  }
+
+  html:not(.dark) .section-title-light {
+    color: #0f172a;
   }
 
   .section-sub {
-    @apply text-white/50 text-base leading-relaxed max-w-xl mb-10;
+    @apply text-base leading-relaxed max-w-xl mb-10;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  html:not(.dark) .section-sub {
+    color: rgba(15, 23, 42, 0.6);
   }
 
   .card {
-    @apply bg-navy-700 rounded-xl border p-6 transition-all duration-300;
+    @apply rounded-xl border p-6 transition-all duration-300;
+    background-color: #0d1627;
     border-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
   }
 
-  .gold-divider {
-    @apply w-12 h-1 bg-gold-500 rounded-full mb-6;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  html:not(.dark) .card {
+    background-color: #ffffff;
+    border-color: rgba(15, 23, 42, 0.1);
+    color: #0f172a;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background
+/* ── Light-mode background overrides ─────────────────── */
+html:not(.dark) .bg-navy {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-navy-700 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-navy-800 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-navy-600 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-\[\#0a0f1a\] {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-\[#0a0f1a\]\/95 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ── Light-mode text overrides ───────────────────────── */
+html:not(.dark) .text-white {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-white\/70 {
+  color: rgba(15, 23, 42, 0.7) !important;
+}
+
+html:not(.dark) .text-white\/60 {
+  color: rgba(15, 23, 42, 0.6) !important;
+}
+
+html:not(.dark) .text-white\/55 {
+  color: rgba(15, 23, 42, 0.55) !important;
+}
+
+html:not(.dark) .text-white\/50 {
+  color: rgba(15, 23, 42, 0.5) !important;
+}
+
+html:not(.dark) .text-white\/45 {
+  color: rgba(15, 23, 42, 0.45) !important;
+}
+
+html:not(.dark) .text-white\/40 {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+
+html:not(.dark) .text-white\/30 {
+  color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* ── Light-mode border overrides ─────────────────────── */
+html:not(.dark) .border-white\/8 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html:not(.dark) .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html:not(.dark) .border-white\/15 {
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+html:not(.dark) .border-white\/20 {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+/* ── Light-mode bg-white/* opacity variants ──────────── */
+html:not(.dark) .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+html:not(.dark) .hover\:bg-white\/10:hover {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+/* ── Always-white utility (for elements on permanently dark/gradient bgs) ── */
+.text-always-white {
+  color: #ffffff !important;
+}
+
+/* ── Footer stays dark in both modes — preserve white text ──────────────── */
+html:not(.dark) footer .text-white { color: #ffffff !important; }
+html:not(.dark) footer .text-white\/50 { color: rgba(255,255,255,0.5) !important; }
+html:not(.dark) footer .text-white\/30 { color: rgba(255,255,255,0.3) !important; }
+html:not(.dark) footer .border-white\/15 { border-color: rgba(255,255,255,0.15) !important; }
+html:not(.dark) footer .border-white\/8 { border-color: rgba(255,255,255,0.08) !important; }
+
+/* ── Missing border opacity override ────────────────────────────────────── */
+html:not(.dark) .border-white\/6 { border-color: rgba(15,23,42,0.06) !important; }

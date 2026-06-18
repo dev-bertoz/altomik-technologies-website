@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useTheme } from '@/context/ThemeContext'
 import Logo from '@/components/ui/Logo'
 import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from 'lucide-react'
 
 const SERVICES = [
   'IT Consulting & Support',
   'Software Development',
+  'Web Design & UI/UX',
   'Cybersecurity',
-  'Cloud Services',
-  'AI & Data Solutions',
+  'Graphic Design & Branding',
+  'Print & Branded Merchandise',
 ]
 
 const COMPANY = [
@@ -18,8 +20,9 @@ const COMPANY = [
 ]
 
 export default function Footer() {
+  const { dark } = useTheme()
   return (
-    <footer className="bg-navy text-white">
+    <footer className={dark ? 'bg-navy text-white' : 'bg-slate-900 text-white'}>
       {/* Top border accent */}
       <div className="h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
 
@@ -121,10 +124,10 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Mail size={15} className="text-gold-500 flex-shrink-0" />
                 <a
-                  href="mailto:hello@altomik.com"
+                  href="mailto:info@altomik.co.ke"
                   className="text-sm text-white/50 hover:text-gold-500 transition-colors"
                 >
-                  hello@altomik.com
+                  info@altomik.co.ke
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -150,6 +153,8 @@ export default function Footer() {
           <p className="text-white/30 text-xs italic">
             Precision in Every Solution.
           </p>
-        </div>
+             </div>
       </div>
-   
+    </footer>
+  )
+}
