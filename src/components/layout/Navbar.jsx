@@ -9,6 +9,7 @@ import clsx from 'clsx'
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Services', to: '/services' },
+  { label: 'Projects', to: '/projects' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]
@@ -144,8 +145,4 @@ export default function Navbar() {
               Get In Touch
             </Link>
           </div>
-        </nav>
-      </div>
-    </header>
-  )
-}
+      

@@ -5,6 +5,7 @@ import About from '@/pages/About'
 import Services from '@/pages/Services'
 import ServiceDetail from '@/pages/ServiceDetail'
 import Contact from '@/pages/Contact'
+import Projects from '@/pages/Projects'
 import TeamProfile from '@/pages/TeamProfile'
 import NotFound from '@/pages/NotFound'
 
@@ -17,11 +18,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
           <Route path="services/:id" element={<ServiceDetail />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="contact" element={<Contact />} />
           <Route path="team/:slug" element={<TeamProfile />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
-  )
-}
+      
